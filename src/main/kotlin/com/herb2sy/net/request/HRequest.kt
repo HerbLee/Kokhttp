@@ -12,12 +12,17 @@ package com.herb2sy.net.request
  */
 class HRequest {
 
-    protected val _params: MutableMap<String, String> = mutableMapOf() // used for a POST or PUT request.
-    protected val _fileParams: MutableMap<String, String> = mutableMapOf() // used for a POST or PUT request.
-    protected val _headers: MutableMap<String, String> = mutableMapOf()
-    private var jsonParams:String? = null
+    val _params: MutableMap<String, String> = mutableMapOf() // used for a POST or PUT request.
+    val _fileParams: MutableMap<String, String> = mutableMapOf() // used for a POST or PUT request.
+    val _headers: MutableMap<String, String> = mutableMapOf()
+
+    var paramsMap:MutableMap<String,String>? = null
+    var headerMap:MutableMap<String,String>? = null
+    var jsonParams:String? = null
     var method:Int = HttpConfig.Method.GET
     var url:String? = null
+    var type:Int = HttpConfig.Type.DEF
+
 
 
 
@@ -37,6 +42,10 @@ class HRequest {
         val hd = RequestPairs()
         hd.params()
         _params.putAll(hd.pairs)
+    }
+
+    fun getRequest():HRequest{
+        return this
     }
 
 }

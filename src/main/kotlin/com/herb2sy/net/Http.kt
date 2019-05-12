@@ -4,8 +4,9 @@
  */
 package com.herb2sy.net
 
-import com.herb2sy.net.request.HRequest
-import com.herb2sy.net.request.HttpConfig
+import com.herb2sy.net.api.ApiUitls
+import com.herb2sy.net.request.GetDataByNet
+
 
 /**
  * @author: HerbLee
@@ -16,11 +17,10 @@ import com.herb2sy.net.request.HttpConfig
 
 class Http {
     companion object {
-        fun get(block: HRequest.() -> Unit) {
-
-            var flg = HRequest()
-            flg.block()
-
+        fun request(block: GetDataByNet.()->Unit){
+            val flag = GetDataByNet()
+            flag.block()
+            flag.initData()
         }
     }
 
@@ -31,14 +31,14 @@ class Http {
 
 
 fun main(args: Array<String>){
-    Http.get {
+    System.out.println("开始")
 
-        url = ""
-        method = HttpConfig.Method.GET
+//    ApiUitls.getWeather("辛集"){
+//        System.out.print("${it?.data?.city}的温度是：${it?.data?.wendu}")
+//    }
 
-        header {
-            "wo"-"ni"
-            "ta"-"hao"
-        }
+
+    ApiUitls.getIpAddress("180.159.159.73"){
+        System.out.print(it)
     }
 }

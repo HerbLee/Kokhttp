@@ -17,4 +17,11 @@ class HttpConfig {
         }
 
     }
+    interface Type{
+        companion object{
+            val DEF = 0
+            val JSON = 1
+        }
+
+    }
 }
